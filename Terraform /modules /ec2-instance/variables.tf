@@ -8,3 +8,6 @@ variable "instance_name" {}
 variable "disk_size" {
   default = 30
 }
+variable "security_group_ids" {
+  type = list(string)
+}
