@@ -1,1 +1,33 @@
+provider "aws" {
+  region = "ap-south-1"
+}
 
+module "vpc" {
+  source              = "./modules/vpc"
+  vpc_cidr            = "10.0.0.0/16"
+  public_subnet_cidr  = "10.0.1.0/24"
+  availability_zone   = "ap-south-1a"
+  name_prefix         = "devsecops"
+}
+
+module "jenkins_master" {
+  source         = "./modules/ec2-instance"
+  ami            = var.ami
+  instance_type  = "t3a.medium"
+  subnet_id      = module.vpc.subnet_id
+  vpc_id         = module.vpc.vpc_id
+  key_name       = var.key_name
+  instance_name  = "jenkins-master"
+  user_data      = file("scripts/install_jenkins.sh")
+}
+
+module "agent_node" {
+  source         = "./modules/ec2-instance"
+  ami            = var.ami
+  instance_type  = "t3a.large"
+  subnet_id      = module.vpc.subnet_id
+  vpc_id         = module.vpc.vpc_id
+  key_name       = var.key_name
+  instance_name  = "agent-node"
+  user_data      = file("scripts/install_agent.sh")
+}
