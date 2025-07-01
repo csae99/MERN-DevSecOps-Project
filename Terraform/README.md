@@ -44,6 +44,21 @@ This project demonstrates a secure DevSecOps pipeline using a MERN stack applica
 git clone https://github.com/yourusername/devsecops-terraform-demo.git
 cd devsecops-terraform-demo
 
+```bash
+# Installing AWS CLI
+#!/bin/bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt install unzip -y
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Installing Terraform
+#!/bin/bash
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update
+sudo apt install terraform -y
+```
 
 ## Usage
 
@@ -53,4 +68,4 @@ terraform init
 terraform validate
 terraform plan
 terraform apply -var 'key_name=your-keypair'
-
+```
