@@ -43,7 +43,8 @@ This project demonstrates a secure DevSecOps pipeline using a MERN stack applica
 ```bash
 git clone https://github.com/yourusername/devsecops-terraform-demo.git
 cd devsecops-terraform-demo
-
+```
+### 2. Install AWS CLI & Terrafoem
 ```bash
 # Installing AWS CLI
 #!/bin/bash
