@@ -1,37 +1,29 @@
 #!/bin/bash
-set -e
+# For Ubuntu 22.04
+# Intsalling Java
+sudo apt update -y
+sudo apt install openjdk-17-jre -y
+sudo apt install openjdk-17-jdk -y
+java --version
 
-# Update and install dependencies
-sudo apt-get update -y
-sudo apt-get install -y openjdk-11-jdk curl gnupg unzip docker.io
-
-# Install Jenkins
-curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
+# Installing Jenkins
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
-
 sudo apt-get update -y
-sudo apt-get install -y jenkins
+sudo apt-get install jenkins -y
 
-# Enable and start services
-sudo systemctl enable docker
-sudo systemctl start docker
+# Installing Docker 
+#!/bin/bash
+sudo apt update
+sudo apt install docker.io -y
+sudo usermod -aG docker jenkins
 sudo usermod -aG docker ubuntu
-sudo systemctl enable jenkins
-sudo systemctl start jenkins
+sudo systemctl restart docker
+sudo chmod 777 /var/run/docker.sock
 
-# Install Trivy
-curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
-sudo mv trivy /usr/local/bin/
-
-# Install Sonar Scanner (Optional for demo)
-sudo mkdir -p /opt/sonar
-cd /opt/sonar
-wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-unzip sonar-scanner-cli-*.zip
-sudo ln -s /opt/sonar/sonar-scanner-*/bin/sonar-scanner /usr/local/bin/sonar-scanner
-
-echo "Jenkins setup completed."
+# Run Docker Container of Sonarqube
+#!/bin/bash
+docker run -d  --name sonar -p 9000:9000 sonarqube:lts-community
