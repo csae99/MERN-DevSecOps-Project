@@ -21,17 +21,17 @@ chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 
 # Create Kubernetes cluster with kind
-kind create cluster --name devsecops-cluster
+# kind create cluster --name devsecops-cluster
 
 # Install ArgoCD
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+# kubectl create namespace argocd
+# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 # Install Prometheus & Grafana using Helm
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+# curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
+# helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+# helm repo update
 
 kubectl create namespace monitoring
 
