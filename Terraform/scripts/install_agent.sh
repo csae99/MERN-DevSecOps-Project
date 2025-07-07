@@ -1,4 +1,12 @@
 #!/bin/bash
+# For Ubuntu 22.04
+# Intsalling Java
+sudo apt update -y
+sudo apt install openjdk-17-jre -y
+sudo apt install openjdk-17-jdk -y
+java --version
+
+#!/bin/bash
 set -e
 
 # Update and install base tools
@@ -33,14 +41,10 @@ sudo mv kubectl /usr/local/bin/
 # helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 # helm repo update
 
-kubectl create namespace monitoring
+# kubectl create namespace monitoring
 
-helm install prometheus prometheus-community/prometheus \
-  --namespace monitoring
+# helm install prometheus prometheus-community/prometheus --namespace monitoring
 
-helm install grafana prometheus-community/grafana \
-  --namespace monitoring \
-  --set adminPassword='admin' \
-  --set service.type=NodePort
+# helm install grafana prometheus-community/grafana --namespace monitoring --set adminPassword='admin' --set service.type=NodePort
 
 echo "Agent setup with kind, ArgoCD, Prometheus, and Grafana completed."
