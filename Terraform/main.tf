@@ -82,7 +82,7 @@ module "jenkins_master" {
 module "agent_node" {
   source         = "./modules/ec2-instance"
   ami            = var.ami
-  instance_type  = "t3a.large"
+  instance_type  = "t3a.medium"
   subnet_id      = module.vpc.subnet_id
   vpc_id         = module.vpc.vpc_id
   key_name       = var.key_name
