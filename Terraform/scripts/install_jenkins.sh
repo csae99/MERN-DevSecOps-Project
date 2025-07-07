@@ -2,8 +2,7 @@
 # For Ubuntu 22.04
 # Intsalling Java
 sudo apt update -y
-sudo apt install openjdk-17-jre -y
-sudo apt install openjdk-17-jdk -y
+sudo apt install openjdk-21-jdk-headless -y
 java --version
 
 # Installing Jenkins
