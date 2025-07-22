@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 data "aws_key_pair" "my_key" {
-  key_name = "var.key_name"
+  key_name = var.key_name
 }
 
 module "vpc" {
