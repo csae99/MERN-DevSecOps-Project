@@ -32,7 +32,7 @@ module "agent_node" {
   instance_type  = "t3a.medium"
   subnet_id      = module.vpc.subnet_id
   vpc_id         = module.vpc.vpc_id
-  key_name       = var.key_name
+  key_name       = data.aws_key_pair.my_key.key_name
   instance_name  = "agent-node"
   security_group_ids = [aws_security_group.agent_sg.id]
   user_data      = file("scripts/install_agent.sh")
