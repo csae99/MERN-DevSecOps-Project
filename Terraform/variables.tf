@@ -3,5 +3,5 @@ variable "ami" {
 }
 
 variable "key_name" {
-  default = "your-keypair"
+  default = "terraform"
 }
