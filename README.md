@@ -1,6 +1,3 @@
-I'll recreate a comprehensive README that guides users through the complete end-to-end deployment. Based on the project structure, this is a Three-Tier MERN application with full DevSecOps pipeline.
-
-````markdown path=README.md mode=EDIT
 # Three-Tier Web Application Deployment on AWS EKS using DevSecOps Pipeline
 
 Welcome to the comprehensive Three-Tier Web Application Deployment project! 🚀
