@@ -7,6 +7,15 @@ echo "Starting setup of Agent-1..."
 # Update packages
 sudo apt-get update -y
 
+# Install Docker
+sudo apt install docker.io -y
+sudo usermod -aG docker $USER && newgrp docker
+sudo systemctl restart docker
+sudo chmod 777 /var/run/docker.sock
+
+# Run Docker Container of Sonarqube
+docker run -d  --name sonar -p 9000:9000 sonarqube:lts-community
+
 # Install Git and findutils (find command)
 sudo apt-get install -y git findutils curl apt-transport-https ca-certificates software-properties-common
 
