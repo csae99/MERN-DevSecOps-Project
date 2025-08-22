@@ -1,0 +1,4 @@
+sudo apt-get update
+curl -LO "https://github.com/csae99/MERN-DevSecOps-Project/blob/master/GIT-ACTION/install.sh"
+sudo chmod +x install.sh
+./install.sh
